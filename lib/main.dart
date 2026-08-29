@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:recetasappg16/examples/textfield_page.dart';
+import 'package:recetasappg16/examples/textformfield_page.dart';
+import 'package:recetasappg16/pages/home_page.dart';
 
 void main() {
-  Widget? Homepage;
-  runApp(MaterialApp(home: Homepage, debugShowCheckedModeBanner: false));
+  runApp(MaterialApp(home: TextFieldPage(), debugShowCheckedModeBanner: false));
 }
