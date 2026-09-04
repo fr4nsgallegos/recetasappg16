@@ -4,7 +4,8 @@ class TextformfieldPage extends StatelessWidget {
   TextformfieldPage({super.key});
 
   final _formKey = GlobalKey<FormState>();
-  TextEditingController _controller = TextEditingController();
+  TextEditingController _emailController = TextEditingController();
+  TextEditingController _passwordController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -19,6 +20,7 @@ class TextformfieldPage extends StatelessWidget {
               mainAxisSize: MainAxisSize.min,
               children: [
                 TextFormField(
+                  controller: _emailController,
                   style: TextStyle(
                     color: Colors.blue,
                     fontSize: 18,
@@ -62,6 +64,65 @@ class TextformfieldPage extends StatelessWidget {
                       borderRadius: BorderRadius.circular(25),
                     ),
                   ),
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return "Por favor ingresa tu correo";
+                    } else if (value.length < 6) {
+                      return "El correo debe tener al menos 6 caracteres";
+                    } else if (!RegExp(
+                      "[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*@[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{2,5}",
+                    ).hasMatch(value)) {
+                      return "Ingresa un correo válido";
+                    } else {
+                      return null;
+                    }
+                  },
+                ),
+                SizedBox(height: 32),
+                TextFormField(
+                  obscureText: true,
+                  controller: _passwordController,
+                  decoration: InputDecoration(
+                    filled: true,
+                    hintText: "Ingresa tu contraseña",
+                    enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(24),
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(24),
+                    ),
+                  ),
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return "Por favor ingresa tu contraseña";
+                    } else if (value.length < 8) {
+                      return "La contaseña debe tener al menos 8 caraceteres";
+                    } else {
+                      return null;
+                    }
+                  },
+                ),
+                ElevatedButton(
+                  onPressed: () {
+                    // validando el formulario
+                    if (_formKey.currentState!.validate()) {
+                      print(_formKey.currentState!.validate());
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(
+                          content: Text("Form correcto y enviado"),
+                          backgroundColor: Colors.green,
+                        ),
+                      );
+                    } else {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(
+                          content: Text("Revisa las alertas"),
+                          backgroundColor: Colors.redAccent,
+                        ),
+                      );
+                    }
+                  },
+                  child: Text("Enviar formulario"),
                 ),
               ],
             ),
