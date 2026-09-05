@@ -20,7 +20,7 @@ class HomeRoutePage extends StatelessWidget {
             SizedBox(height: 30),
             ElevatedButton(
               onPressed: () {
-                context.go("/login");
+                context.go("/logins");
               },
               child: Text("Ir al login"),
             ),
