@@ -24,7 +24,8 @@ class ProductsPage extends StatelessWidget {
             subtitle: Text("Toca para ver el detalle"),
             trailing: Icon(Icons.arrow_forward_ios),
             onTap: () {
-              context.go("/products/${product['id']}");
+              // context.go("/products/${product['id']}");
+              context.push("/products/${product['id']}");
             },
           );
         },

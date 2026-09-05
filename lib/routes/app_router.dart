@@ -6,6 +6,7 @@ import 'package:recetasappg16/routes/login_page.dart';
 import 'package:recetasappg16/routes/product_detail_page.dart';
 import 'package:recetasappg16/routes/products_page.dart';
 import 'package:recetasappg16/routes/profile_page.dart';
+import 'package:recetasappg16/routes/search_page.dart';
 
 // Gorouter es una libreria que va permitie manejar la navegación de flutter usando rutas declaraticas
 // o sea en vez de decir esta pantalla encima de la otra ->  llévame a esta dirección
@@ -27,6 +28,14 @@ final GoRouter appRouter = GoRouter(
       builder: (context, state) {
         final productId = state.pathParameters["id"]!;
         return ProductDetailPage(productId: productId);
+      },
+    ),
+    GoRoute(
+      path: "/search",
+      builder: (context, state) {
+        final query = state.uri.queryParameters["query"] ?? "Sin búsqueda";
+
+        return SearchPage(query: query);
       },
     ),
   ],
