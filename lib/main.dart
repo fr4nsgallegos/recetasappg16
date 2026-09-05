@@ -5,6 +5,7 @@ import 'package:recetasappg16/examples/scrooll_page.dart';
 import 'package:recetasappg16/examples/textfield_page.dart';
 import 'package:recetasappg16/examples/textformfield_page.dart';
 import 'package:recetasappg16/pages/home_page.dart';
+import 'package:recetasappg16/routes/app_router.dart';
 
 // void main() {
 //   runApp(
@@ -25,6 +26,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp.router(
       debugShowCheckedModeBanner: false,
       title: "Clase GoRouter",
+      routerConfig: appRouter,
     );
   }
 }
