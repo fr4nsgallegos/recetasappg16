@@ -7,6 +7,8 @@ import 'package:recetasappg16/examples/textformfield_page.dart';
 import 'package:recetasappg16/pages/home_page.dart';
 
 void main() {
-  runApp(MaterialApp(home: NavigatorPage(), debugShowCheckedModeBanner: false));
+  runApp(
+    MaterialApp(home: NavigatorRoutesPage(), debugShowCheckedModeBanner: false),
+  );
   // runApp(MaterialApp(home: ListviewPage(), debugShowCheckedModeBanner: false));
 }
