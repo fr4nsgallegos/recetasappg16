@@ -12,13 +12,42 @@ class NavigatorPage extends StatelessWidget {
           mainAxisSize: .min,
           children: [
             ElevatedButton(
-              onPressed: () {
-                Navigator.push(
+              onPressed: () async {
+                //  Navegacion simple
+                // Navigator.push(
+                //   context,
+                //   MaterialPageRoute(
+                //     builder: (context) => DetallePage(nombre: "Jhonny"),
+                //   ),
+                // );
+
+                // Navegación con espera de resultado
+                final result = await Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => DetallePage()),
+                  MaterialPageRoute(
+                    builder: (context) => DetallePage(nombre: "Jhonny"),
+                  ),
                 );
+
+                // Al volver de detallePage, mostramos el resultado si es que devueklve algo
+                if (context.mounted && result != null) {
+                  ScaffoldMessenger.of(
+                    context,
+                  ).showSnackBar(SnackBar(content: Text("Resultado: $result")));
+                }
               },
               child: Text("Ir al detalle"),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => DetallePage(nombre: "Maria"),
+                  ),
+                );
+              },
+              child: Text("Ir al detalle sin retorno"),
             ),
           ],
         ),
@@ -28,13 +57,28 @@ class NavigatorPage extends StatelessWidget {
 }
 
 class DetallePage extends StatelessWidget {
-  const DetallePage({super.key});
+  String nombre;
+
+  DetallePage({super.key, required this.nombre});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("Detalle Page")),
-      body: Center(child: Column(mainAxisSize: .min)),
+      appBar: AppBar(title: Text("Detalle Page"), leading: Container()),
+      body: Center(
+        child: Column(
+          mainAxisSize: .min,
+          children: [
+            Text("El nombre es $nombre", style: TextStyle(fontSize: 35)),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.pop(context, "Ok desde el detalle page");
+              },
+              child: Text("Regresar al home"),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }
