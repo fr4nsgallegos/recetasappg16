@@ -2,31 +2,32 @@ import 'package:flutter/material.dart';
 import 'package:recetasappg16/examples/listview_page.dart';
 import 'package:recetasappg16/examples/navigator_page.dart';
 import 'package:recetasappg16/examples/scrooll_page.dart';
+import 'package:recetasappg16/examples/sliver/sliver_home_page.dart';
 import 'package:recetasappg16/examples/textfield_page.dart';
 import 'package:recetasappg16/examples/textformfield_page.dart';
 import 'package:recetasappg16/pages/home_page.dart';
 import 'package:recetasappg16/routes/app_router.dart';
 
+void main() {
+  runApp(
+    MaterialApp(home: SliverHomePage(), debugShowCheckedModeBanner: false),
+  );
+  // runApp(MaterialApp(home: ListviewPage(), debugShowCheckedModeBanner: false));
+}
+
 // void main() {
-//   runApp(
-//     MaterialApp(home: NavigatorRoutesPage(), debugShowCheckedModeBanner: false),
-//   );
-//   // runApp(MaterialApp(home: ListviewPage(), debugShowCheckedModeBanner: false));
+//   runApp(MyApp());
 // }
 
-void main() {
-  runApp(MyApp());
-}
+// class MyApp extends StatelessWidget {
+//   const MyApp({super.key});
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp.router(
-      debugShowCheckedModeBanner: false,
-      title: "Clase GoRouter",
-      routerConfig: appRouter,
-    );
-  }
-}
+//   @override
+//   Widget build(BuildContext context) {
+//     return MaterialApp.router(
+//       debugShowCheckedModeBanner: false,
+//       title: "Clase GoRouter",
+//       routerConfig: appRouter,
+//     );
+//   }
+// }
